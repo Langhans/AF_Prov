@@ -2,7 +2,9 @@ module.exports = function(sequelize , DataTypes){
 	
 	var Employee = sequelize.define("Employee", 
 	{
-	name: DataTypes.STRING
+		name: { type: DataTypes.STRING,
+							allowNull: false
+					}
 	}, {
 	classMethods: {
       associate: function(models) {
