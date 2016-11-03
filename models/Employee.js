@@ -5,12 +5,6 @@ module.exports = function(sequelize , DataTypes){
 		name: { type: DataTypes.STRING,
 							allowNull: false
 					}
-	}, {
-	classMethods: {
-      associate: function(models) {
-        Employee.belongsToMany(models.Company, {through: 'Employment'})
-      }
-    }
 	});
 
 	return Employee;

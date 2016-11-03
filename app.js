@@ -1,4 +1,5 @@
 var express = require('express');
+var app = express();
 var path = require('path');
 
 var logger = require('morgan');
@@ -7,8 +8,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var Employees = require('./routes/Employees');
-
-var app = express();
+var Companies = require('./routes/Companies');
 
 
 // uncomment after placing your favicon in /public
@@ -21,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/Employee', Employees);
+app.use('/Companies' , Companies);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

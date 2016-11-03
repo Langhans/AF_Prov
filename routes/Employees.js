@@ -1,12 +1,11 @@
 var express = require('express');
 var router = express.Router();
-
 var db = require('../models');
 
 /* GET all Employees. */
 router.get('/', function (req, res, next) {
 
-  db.Employee.find({}).then((err, result) => {
+  db.Employee.findAll().then((err, result) => {
     if (err) {
       res.send(err);
     } else {
@@ -32,9 +31,10 @@ router.post('/' , function(req,res,next) {
 
 // find Employee by id from url-path
 router.get('/:id'), function (req, res, next) {
-
-  var id = req.params.id;
-  console.log("Searching for " + id);
+  var id_string = req.params.id;
+  console.log("Searching for Employee: " + id_string);
+  var id = Number( id_string );
+  
   db.Employee.findById( id ).then((err, result) => {
     if (err) {
       res.send(err);
@@ -43,5 +43,16 @@ router.get('/:id'), function (req, res, next) {
     }
   });
 };
+
+router.post('/list' , function(req,res,next) {
+
+  db.Employee.findAll({ where: { id : { $in: req.body.ids} }})
+  .then( (employees) => {
+    res.send(employees);
+  })
+  .catch( (err) => {
+    res.send(err);
+  });
+});
 
 module.exports = router;
