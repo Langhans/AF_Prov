@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>AF_PROV</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<link rel="import" href="head_nav.html">
+</head>
+
+<body>
+	<div>
+		<form>
+			<label for="emp_input">Enter new employee</label>
+			<input type="text" id="emp_input" />
+			<button type="submit">submit</button>
+		</form>
+	</div>
+
+	<div>
+		<h3>All employees</h3>
+		<ul>
+			<script>
+				getAllEmployees();
+				</script>
+		</ul>
+	</div>
+
+</body>
+
+</html>
