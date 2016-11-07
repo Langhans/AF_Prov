@@ -1,0 +1,11 @@
+
+body{
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+
+
+div{
+    width: 80%;
+    margin: 35px;
+}
