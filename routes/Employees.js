@@ -17,36 +17,24 @@ router.get('/', function (req, res, next) {
   });
 });
 
-
+// employ a new Employee at a Company
 router.post('/' , function(req, res, next) {
+	var company_id = Number(req.body.companyId);
 
-  db.Employee.create({name: req.body.name, companyId: req.body.companyId})
-	  .then( (err,result) => {
-    
-    if (err){
-      console.error(err);
-      res.send(err);
-    } else{
-      console.log("added : " + result);
-      res.send(result);
-    }
-  });
+	db.Company.findById(company_id).then( company => {
+
+		db.Employee.create({name: req.body.name}).then( employee => {
+			company.addEmployee( employee ).success(
+				res.send("Successfully added employee!")
+			);
+		});
+
+	}).catch(err => {
+		console.error(err);
+		res.send(err);
+	});
 });
 
 
-// find Employee by id from url-path
-router.get("/:id"), function (req, res, next) {
-
-console.log("Search by id entered");
-  var id = Number(req.params.id);
-
-  db.Employee.findById( id ).then( (err, result) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(result);
-    }
-  });
-};
 
 module.exports = router;

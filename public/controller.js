@@ -48,3 +48,14 @@ function addEmployee() {
 		alert("Name cannot be empty");
 	}
 }
+
+function getCompaniesEmployees(){
+	var compId_in = $("#comp_selector").val();
+	// TODO Do it!
+	console.log("TODO: getem och gör en lista av det! ");
+}
+
+
+// TODO Function for ADd company!
+
+// Todo function for making a list of Employees!

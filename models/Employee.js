@@ -5,14 +5,7 @@ module.exports = function(sequelize , DataTypes){
 		name: { type: DataTypes.STRING,
 							allowNull: false
 					}
-	}, {
-	classMethods: {
-      associate: function(models) {
-        //Employee.hasOne(models.Company);
-      }
-    }
 	});
 
 	return Employee;
-
 }

@@ -11,34 +11,36 @@
 			<a href="index.html">Employee<a/>
 				<a href="companies.html">Company</a>
 		</nav>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="./controller.js"></script>
+		<link rel="stylesheet" type="text/css" href="styles.css">
 	</div>
 </head>
 
 <body>
 	<div>
-		<form>
+
 			<label for="comp_input">Enter new Company</label>
 			<input type="text" id="comp_input" />
-			<button type="submit">submit</button>
-		</form>
+			<button onclick="">add company</button>
+
 	</div>
 
 	<div>
-		<h3>Select Employee</h3>
-		<script>
-			
-
-
-			</script>
-		<select size="30">
-
-
-
-		</select>
 		<h3>Select Company</h3>
-		<button>EMPLOY!</button>
+		<select id="comp_selector" size="15">
+			<script>
+				refreshCompanySelector();
+			</script>
+		</select>
 	</div>
 
+
+	<div>
+		<button type="button" onclick="getCompaniesEmployees()">show employees</button>
+	</div>
+</body>
 </body>
 
 </html>

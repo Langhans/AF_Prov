@@ -31,51 +31,21 @@ router.post('/' , function(req,res,next) {
 });
 
 
-router.post('/employ' , function(req,res,next) {
-
-	try{	
-	var body = req.body;
-	var compId = Number(body.companyId);
-	var empId = Number(body.employeeId);
-	} catch (error){
+// get all Employees working at the requested Company
+router.get('/getEmployees/:id' , function(req,res,next) {
+	try{
+		var company_id = Number(req.params.id);
+	} catch (err){
 		res.status(400).send(err);
 	}
-	console.log(body);
-	console.log(compId);
-	console.log(empId);
 
-			db.Employee.findById(empId)
-				.then( employee => {
-					console.log(employee);
-
-					if (employee.companyId == null || employee.companyId == undefined){
-						db.Employee.setCompany( compId ).then( 		 
-							 () => 
-								res.send("Successfully employed!")
-							);
-						
-					} else {
-						res.status(400).send("Employee already employed!");
-					}
-				})
-				.catch(err => res.send(err)); 
+	db.Company.findById( company_id ).then( company => {
+		company.getEmployees().then( employees => {
+			res.send(employees);
+		});
+	}).catch(err => res.send(err));
 });
 
 
-
-// find Company by id from url-path
-router.get("/:id"), function (req, res, next) {
-
-console.log("Search by id entered");
-  var id = Number(req.params.id);
-
-  db.Company.findById( id ).then( (err, result) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(result);
-    }
-  });
-};
 
 module.exports = router;
