@@ -8,7 +8,7 @@ module.exports = function(sequelize , DataTypes){
 	}, {
 	classMethods: {
       associate: function(models) {
-        Employee.hasOne(models.Company);
+        //Employee.hasOne(models.Company);
       }
     }
 	});

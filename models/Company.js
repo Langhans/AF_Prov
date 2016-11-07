@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
 		}, {
 			classMethods: {
 				associate: function (models) {
-					Company.belongsToMany(models.Employee, { through: 'Employment' })
+					//Company.hasMany(models.Employee);
 				}
 			}
 		});
