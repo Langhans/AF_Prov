@@ -35,10 +35,10 @@ function addEmployee() {
 		$.ajax({
 			type: 'POST',
 			url: baseUrl + "/employees",
-			data: JSON.stringify(data_out),
+			data: data_out,
 			success: function () {
 				alert("Successfully added employee!");
-				refreshCompanySelector();
+				location.reload();
 			},
 			error: function (error) {
 				alert(error);
