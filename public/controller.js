@@ -2,9 +2,6 @@
 var baseUrl = "http://localhost:3000/api";
 
 
-
-
-
 function getEmployeeList(){
 	$.ajax({
 		type:'GET',
@@ -20,3 +17,25 @@ function getEmployeeList(){
 }
 
 
+function addEmployee(){
+	var name_in = $("#emp_input").val();
+	console.log($("#emp_input").val());
+	var data = JSON.stringify({name: name_in});
+
+	if (name && name.length > 1) {
+			$.ajax({
+				type: 'POST',
+				url: baseUrl + "/employees",
+				data: data,
+				success: function(){
+					alert("SUCCESS");
+					getEmployeeList();
+				},
+				error: function(error){
+					alert(error);
+				}
+		});
+	} else {
+		alert ("Name cannot be empty");
+	}
+}
