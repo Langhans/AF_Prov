@@ -6,7 +6,7 @@ var db = require('../models');
 /* GET all Employees. */
 router.get('/', function (req, res, next) {
 
-  db.Employee.find({}).then((err, result) => {
+  db.Employee.findAll().then( (err, result) => {
     if (err) {
       res.send(err);
     } else {
@@ -31,11 +31,12 @@ router.post('/' , function(req,res,next) {
 
 
 // find Employee by id from url-path
-router.get('/:id'), function (req, res, next) {
+router.get("/:id"), function (req, res, next) {
 
-  var id = req.params.id;
-  console.log("Searching for " + id);
-  db.Employee.findById( id ).then((err, result) => {
+console.log("Search by id entered");
+  var id = Number(req.params.id);
+
+  db.Employee.findById( id ).then( (err, result) => {
     if (err) {
       res.send(err);
     } else {
