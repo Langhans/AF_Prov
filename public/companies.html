@@ -2,45 +2,48 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>AF_PROV</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>AF_PROV</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-	<div>
-		<nav>
-			<a href="index.html">Employee<a/>
-				<a href="companies.html">Company</a>
-		</nav>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-		<script src="./controller.js"></script>
-		<link rel="stylesheet" type="text/css" href="styles.css">
-	</div>
+    <!--  Repeat code in nav-bar. Decided not to import an extra js-library to
+        import HTML-code from external file for these few rows. -->
+    <div>
+        <nav>
+            <a href="index.html">Employee<a/>
+                <a href="companies.html">Company</a>
+        </nav>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="./controller.js"></script>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </div>
 </head>
 
 <body>
-	<div>
 
-			<label for="comp_input"><h3>Enter new Companies name:</h3></label>
-			<input type="text" id="comp_input" />
-			<button onclick="addCompany()">add Company</button>
-			<button type="reset" onclick="clearFields()">clear</button>
-	</div>
+<div>
+    <label for="comp_input"><h3>Enter new Companies name:</h3></label>
+    <input type="text" id="comp_input"/>
+    <button onclick="addCompany()">add Company</button>
+    <button type="reset" onclick="clearFields()">clear</button>
+</div>
 
-	<div>
-		<h3>Select Company to show its Employees!</h3>
-		<select id="comp_selector" size="15" onchange="getCompaniesEmployees()">
-			<script>
-				refreshCompanySelector();
-			</script>
-		</select>
-	</div>
+<div>
+    <h3>Select Company to show its Employees!</h3>
+    <select id="comp_selector" size="15" onchange="getCompaniesEmployees()">
+        <script>
+            refreshCompanySelector();
+        </script>
+    </select>
+</div>
 
-	<div>
-		<h3>Employees working here:</h3>
-		<ul id="employee_list">
-		</ul>
-	</div>
+<div>
+    <h3>Employees working here:</h3>
+    <ul id="employee_list">
+    </ul>
+</div>
 
 
 </body>

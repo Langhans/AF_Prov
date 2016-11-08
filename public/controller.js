@@ -1,3 +1,4 @@
+// Root URL of Rest-API
 var baseUrl = "http://localhost:3000/api";
 
 
@@ -16,7 +17,6 @@ function refreshCompanySelector() {
 					company.name + '</option>';
 				$('#comp_selector').append(option_element);
 			});
-			;
 		}
 	});
 }
@@ -28,7 +28,7 @@ function addEmployee() {
 	console.log(name_in);
 	console.log(compId_in);
 
-	// minimal validation
+	// minimal validation of user input
 	if (name_in && String(name_in).length > 1 && compId_in) {
 		var data_out = {};
 		data_out.name = name_in;
@@ -91,7 +91,6 @@ function addCompany() {
 			url: baseUrl + "/companies",
 			data: data_out,
 			success: function () {
-				alert("Successfully added Company!");
 				refreshCompanySelector();
 				clearFields();
 			},
@@ -113,7 +112,6 @@ function fillListOfEmployees(data) {
 	emp_list.empty();
 
 	if (data && data.length > 0) {
-
 		$.each(data, function (index, employee) {
 			var list_item = '<li>' + employee.name + '</li>';
 			emp_list.append(list_item);
