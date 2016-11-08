@@ -19,13 +19,17 @@
 <body>
 
 <div>
+    <h2>Add a new Employee</h2>
+</div>
 
-    <label for="emp_input"><h3>Enter new employee</h3></label>
+<div>
+
+    <label for="emp_input"><h3>Enter new Employees name:</h3></label>
     <input type="text" id="emp_input"/>
 </div>
 
 <div>
-    <h3>Select company</h3>
+    <h3>Select hiring Company:</h3>
     <select id="comp_selector" size="15">
         <script>
             refreshCompanySelector();
@@ -36,6 +40,7 @@
 
 <div>
     <button type="button" onclick="addEmployee()">Employ</button>
+    <button type="reset" onclick="clearFields()">clear</button>
 </div>
 </body>
 

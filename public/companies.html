@@ -21,26 +21,28 @@
 <body>
 	<div>
 
-			<label for="comp_input">Enter new Company</label>
+			<label for="comp_input"><h3>Enter new Companies name:</h3></label>
 			<input type="text" id="comp_input" />
-			<button onclick="">add company</button>
-
+			<button onclick="addCompany()">add Company</button>
+			<button type="reset" onclick="clearFields()">clear</button>
 	</div>
 
 	<div>
-		<h3>Select Company</h3>
-		<select id="comp_selector" size="15">
+		<h3>Select Company to show its Employees!</h3>
+		<select id="comp_selector" size="15" onchange="getCompaniesEmployees()">
 			<script>
 				refreshCompanySelector();
 			</script>
 		</select>
 	</div>
 
-
 	<div>
-		<button type="button" onclick="getCompaniesEmployees()">show employees</button>
+		<h3>Employees working here:</h3>
+		<ul id="employee_list">
+		</ul>
 	</div>
-</body>
+
+
 </body>
 
 </html>

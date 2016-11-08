@@ -1,6 +1,7 @@
 var baseUrl = "http://localhost:3000/api";
 
 
+// fetches all Companies from server async and populates Company selector elem
 function refreshCompanySelector() {
 	$.ajax({
 		type: 'GET',
@@ -8,6 +9,8 @@ function refreshCompanySelector() {
 		datatype: 'json',
 		success: function (data) {
 			console.log("Companies received");
+			$('#comp_selector').empty();
+
 			$.each(data, function (index, company) {
 				var option_element = '<option value="' + company.id + '">' +
 					company.name + '</option>';
@@ -18,7 +21,7 @@ function refreshCompanySelector() {
 	});
 }
 
-
+// adds a new employee via POST to REST-API
 function addEmployee() {
 	var name_in = $("#emp_input").val();
 	var compId_in = $("#comp_selector").val();
@@ -38,24 +41,84 @@ function addEmployee() {
 			data: data_out,
 			success: function () {
 				alert("Successfully added employee!");
-				location.reload();
+				refreshCompanySelector();
+				clearFields();
 			},
 			error: function (error) {
 				alert(error);
 			}
 		});
 	} else {
-		alert("Name cannot be empty");
+		alert("Invalid user-input. Please check again!");
 	}
 }
 
-function getCompaniesEmployees(){
-	var compId_in = $("#comp_selector").val();
-	// TODO Do it!
-	console.log("TODO: getem och gör en lista av det! ");
+// reset text input fields
+function clearFields() {
+	$('#emp_input').val("");
+	$('#comp_input').val("");
 }
 
 
-// TODO Function for ADd company!
+// Fetches all Employees of the selected Company (Company-selector element)
+function getCompaniesEmployees() {
+	var company_id = $("#comp_selector").val();
 
-// Todo function for making a list of Employees!
+	$.ajax({
+		type: 'GET',
+		url: baseUrl + "/companies/getEmployees/" + company_id,
+		success: function (data) {
+			fillListOfEmployees(data);
+		},
+		error: function (error) {
+			alert(error);
+		}
+	});
+}
+
+
+// adds a new Company via POST to REST-API
+function addCompany() {
+	var name_in = $("#comp_input").val();
+
+	// minimal validation of user input
+	if (name_in && String(name_in).length > 1) {
+		var data_out = {};
+		data_out.name = name_in;
+
+		$.ajax({
+			type: 'POST',
+			url: baseUrl + "/companies",
+			data: data_out,
+			success: function () {
+				alert("Successfully added Company!");
+				refreshCompanySelector();
+				clearFields();
+			},
+			error: function (error) {
+				alert(error);
+			}
+		});
+	} else {
+		alert("Invalid user-input. Please check again!");
+	}
+}
+
+/* Fills Employee list element with data from the employee-array passed to
+ * this function.
+ */
+function fillListOfEmployees(data) {
+
+	var emp_list = $('#employee_list');
+	emp_list.empty();
+
+	if (data && data.length > 0) {
+
+		$.each(data, function (index, employee) {
+			var list_item = '<li>' + employee.name + '</li>';
+			emp_list.append(list_item);
+		});
+	} else {
+		emp_list.append("<li>No registered employees</li>");
+	}
+}
