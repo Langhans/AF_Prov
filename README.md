@@ -6,3 +6,5 @@ Result of a "hackathon" of 8 hours. A little programming task for a job applicat
 2. npm install
 3. npm start
 
+The app starts on port localhost:3000 by default. 
+
